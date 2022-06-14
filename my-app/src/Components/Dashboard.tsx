@@ -1,4 +1,3 @@
-import { DetailsList } from "@fluentui/react/lib/DetailsList"
 import React from "react";
 import { ListOfRequests } from "./ListOfRequests";
 import { getRequestFromAPI } from "../Brokers/Request";
@@ -8,8 +7,12 @@ export const Dashboard = () => {
     const [items, setItems] = React.useState<Request[] | undefined>(undefined);
 
     React.useEffect(() => {
-        setItems(getRequestFromAPI())
-    })
+        getRequestFromAPI()
+        .then((requests: any) =>{
+            setItems(requests)
+        })
+
+    }, [getRequestFromAPI])
 
     return (<>
         <ListOfRequests items={items} />

@@ -6,5 +6,5 @@ export type Request = {
     u_time: string;
     u_by: string;
     status: string;
-    actions: string;
+    
 };
