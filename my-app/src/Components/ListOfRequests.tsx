@@ -2,12 +2,23 @@ import { ShimmeredDetailsList } from "@fluentui/react/lib/ShimmeredDetailsList";
 import React from "react";
 import { Request } from "../Models/RequestType";
 
-export const ListOfRequests = ({ items }: { items: Request[] | undefined; }) => {
-   return (<>
-        <ShimmeredDetailsList
+type ListOfRequests = {
+    items: Request[] | undefined;
+    getItems?: () => Promise<Request[]>;
+};
 
-            items={items ?? []}
-            enableShimmer={!items}
+export const ListOfRequests = ({ items, getItems }: ListOfRequests) => {
+    const [listOfRequests, setlistOfRequests] = React.useState<Request[] | undefined>(items);
+
+    React.useEffect(() => {
+        getItems && getItems().then((items => setlistOfRequests(items)))
+        items && setlistOfRequests(items)
+    }, [items, getItems])
+
+    return (<>
+        <ShimmeredDetailsList
+            items={ listOfRequests ?? []}
+            enableShimmer={!listOfRequests}
             columns={[
                 {
                     key: 'c_ticket_number',
