@@ -3,8 +3,6 @@ import React from "react";
 import { Request } from "../Models/RequestType";
 
 export const ListOfRequests = ({ items }: { items: Request[] | undefined; }) => {
-   
-   console.log({items})
    return (<>
         <ShimmeredDetailsList
 
