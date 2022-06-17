@@ -14,7 +14,7 @@ export const ListOfRequests = ({ items, getItems }: ListOfRequests) => {
         getItems && getItems().then((items => setlistOfRequests(items)))
         items && setlistOfRequests(items)
     }, [items, getItems])
-
+console.log({listOfRequests})
     return (<>
         <ShimmeredDetailsList
             items={ listOfRequests ?? []}
